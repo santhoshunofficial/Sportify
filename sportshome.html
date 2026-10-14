@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sportify - Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Rajdhani', sans-serif;
+  background: #0a0a0f;
+  color: #eee;
+  overflow-x: hidden;
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0,255,68,0.12) 0%, transparent 70%),
+    linear-gradient(180deg, #0d1f0d 0%, #0a0a0f 100%);
+}
+
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,255,68,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,68,0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Ticker */
+.ticker {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: #00ff44;
+  color: #0a0a0f;
+  padding: 6px 0;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  z-index: 100;
+}
+.ticker-inner {
+  display: inline-block;
+  animation: ticker 25s linear infinite;
+}
+@keyframes ticker {
+  0% { transform: translateX(100vw); }
+  100% { transform: translateX(-100%); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  margin-top: 30px;
+}
+
+.hero-stickers {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+  animation: fadeIn 1s ease both;
+}
+.sticker {
+  font-size: 42px;
+  animation: bounce 2s ease-in-out infinite;
+  display: inline-block;
+}
+.sticker:nth-child(2) { animation-delay: 0.15s; }
+.sticker:nth-child(3) { animation-delay: 0.3s; }
+.sticker:nth-child(4) { animation-delay: 0.45s; }
+.sticker:nth-child(5) { animation-delay: 0.6s; }
+.sticker:nth-child(6) { animation-delay: 0.75s; }
+.sticker:nth-child(7) { animation-delay: 0.9s; }
+.sticker:nth-child(8) { animation-delay: 1.05s; }
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.hero-tagline {
+  font-size: 13px;
+  letter-spacing: 5px;
+  color: #00ff44;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  animation: fadeIn 0.8s ease 0.3s both;
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(52px, 10vw, 96px);
+  line-height: 0.95;
+  color: #fff;
+  text-shadow: 0 0 60px rgba(0,255,68,0.3);
+  margin-bottom: 20px;
+  animation: fadeIn 0.8s ease 0.5s both;
+}
+.hero-title .green { color: #00ff44; }
+
+.hero-sub {
+  font-size: 18px;
+  color: #889;
+  max-width: 520px;
+  margin: 0 auto 40px;
+  font-weight: 600;
+  animation: fadeIn 0.8s ease 0.7s both;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeIn 0.8s ease 0.9s both;
+}
+
+.btn-primary {
+  background: #00ff44;
+  color: #0a0a0f;
+  border: none;
+  padding: 16px 36px;
+  border-radius: 50px;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 18px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(0,255,68,0.4); }
+
+.btn-secondary {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #334;
+  padding: 14px 36px;
+  border-radius: 50px;
+  font-family: 'Bebas Neue', cursive;
+  font-size: 18px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.btn-secondary:hover { border-color: #00ff44; color: #00ff44; }
+
+/* SLIDER */
+.slider-section {
+  padding: 60px 40px;
+  background: #0d0d12;
+  position: relative;
+}
+.section-label {
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: #00ff44;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+.section-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 42px;
+  color: #fff;
+  margin-bottom: 30px;
+}
+
+.slider-wrap { position: relative; overflow: hidden; border-radius: 16px; }
+.slides-container {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+}
+.slide-item {
+  min-width: 100%;
+  height: 340px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+.slide-item .slide-bg {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  position: relative;
+}
+.slide-item:nth-child(1) .slide-bg { background: linear-gradient(135deg, #0d2a0d, #1a4a1a); }
+.slide-item:nth-child(2) .slide-bg { background: linear-gradient(135deg, #0d0d2a, #1a1a4a); }
+.slide-item:nth-child(3) .slide-bg { background: linear-gradient(135deg, #2a0d0d, #4a1a1a); }
+.slide-item:nth-child(4) .slide-bg { background: linear-gradient(135deg, #2a2a0d, #4a4a1a); }
+
+.slide-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  padding: 30px 30px 20px;
+}
+.slide-caption h3 { font-family: 'Bebas Neue', cursive; font-size: 28px; color: #fff; }
+.slide-caption p { color: #aaa; font-size: 14px; }
+
+.slide-nav {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  justify-content: center;
+}
+.slide-dot {
+  width: 30px; height: 4px;
+  background: #222;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.slide-dot.active { background: #00ff44; width: 50px; }
+
+.slider-arrows {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+  justify-content: flex-end;
+}
+.arrow-btn {
+  background: #151520;
+  border: 1px solid #2a3a2a;
+  color: #fff;
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.arrow-btn:hover { background: #00ff44; color: #0a0a0f; border-color: #00ff44; }
+
+/* SPORTS GRID */
+.sports-grid-section {
+  padding: 80px 40px;
+  background: #0a0a0f;
+}
+.sports-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  margin-top: 30px;
+}
+.sport-card {
+  background: #0d0d12;
+  border: 1px solid #1a2a1a;
+  border-radius: 16px;
+  padding: 24px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.sport-card:hover {
+  transform: translateY(-8px);
+  border-color: #00ff44;
+  box-shadow: 0 10px 30px rgba(0,255,68,0.15);
+}
+.sport-card .s-icon { font-size: 40px; margin-bottom: 10px; display: block; }
+.sport-card .s-name {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #ccc;
+  text-transform: uppercase;
+}
+
+/* STATS */
+.stats-section {
+  padding: 80px 40px;
+  background: linear-gradient(135deg, #0d1f0d 0%, #0a0a0f 100%);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  text-align: center;
+}
+.stat-card { padding: 20px; }
+.stat-num {
+  font-family: 'Bebas Neue', cursive;
+  font-size: 64px;
+  color: #00ff44;
+  line-height: 1;
+  text-shadow: 0 0 30px rgba(0,255,68,0.4);
+}
+.stat-label {
+  color: #667;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+/* REGISTER CTA */
+.cta-section {
+  padding: 80px 40px;
+  background: #0d0d12;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(0,255,68,0.08), transparent 70%);
+  pointer-events: none;
+}
+.cta-stickers { font-size: 30px; margin-bottom: 20px; letter-spacing: 10px; }
+.cta-title {
+  font-family: 'Bebas Neue', cursive;
+  font-size: clamp(36px, 6vw, 64px);
+  color: #fff;
+  margin-bottom: 16px;
+}
+.cta-title .green { color: #00ff44; }
+.cta-sub { color: #667; font-size: 16px; margin-bottom: 36px; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+<!-- SPORTIFY NAV START -->
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<style id="sportify-nav-css">
+
+/* ===== SPORTIFY NAVBAR ===== */
+#sportify-nav {
+  position: fixed; top: 0; left: 0; right: 0; height: 70px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 28px;
+  background: linear-gradient(135deg, #0a0a0f 0%, #0d1f0d 100%);
+  border-bottom: 2px solid #00ff44;
+  box-shadow: 0 4px 30px rgba(0,255,68,0.15);
+  z-index: 99999;
+  font-family: 'Rajdhani', sans-serif;
+}
+#sportify-nav .nav-left { display: flex; align-items: center; gap: 16px; }
+#sportify-nav #ham {
+  background: none; border: 2px solid #00ff44; color: #00ff44;
+  font-size: 20px; width: 42px; height: 42px; border-radius: 8px;
+  cursor: pointer; transition: all 0.3s;
+  display: flex; align-items: center; justify-content: center;
+}
+#sportify-nav #ham:hover { background: #00ff44; color: #0a0a0f; }
+#sportify-nav .logo {
+  font-family: 'Bebas Neue', cursive; font-size: 32px; color: #00ff44;
+  letter-spacing: 3px; text-shadow: 0 0 20px rgba(0,255,68,0.5); cursor: pointer;
+}
+#sportify-nav .logo span { color: #fff; }
+#sportify-nav .nav-links { display: flex; align-items: center; gap: 6px; list-style: none; }
+#sportify-nav .nav-links li {
+  color: #aaa; font-size: 13px; font-weight: 600; letter-spacing: 1.5px;
+  padding: 8px 14px; border-radius: 6px; cursor: pointer;
+  transition: all 0.3s; text-transform: uppercase; white-space: nowrap;
+}
+#sportify-nav .nav-links li:hover { color: #00ff44; background: rgba(0,255,68,0.08); }
+#sportify-nav #loginBtn {
+  background: #00ff44; color: #0a0a0f; border: none; padding: 9px 20px;
+  border-radius: 6px; font-family: 'Rajdhani', sans-serif; font-weight: 700;
+  font-size: 13px; letter-spacing: 1.5px; cursor: pointer; transition: all 0.3s; text-transform: uppercase;
+}
+#sportify-nav #loginBtn:hover { background: #00cc36; box-shadow: 0 0 20px rgba(0,255,68,0.4); }
+#sportify-nav #profileBtn {
+  background: rgba(0,255,68,0.1); border: 2px solid #00ff44; color: #00ff44;
+  width: 38px; height: 38px; border-radius: 50%; font-size: 18px;
+  cursor: pointer; transition: all 0.3s;
+}
+#sportify-nav #profileBtn:hover { background: #00ff44; color: #0a0a0f; }
+#sideMenu {
+  position: fixed; top: 70px; left: -320px; width: 280px;
+  height: calc(100vh - 70px); background: #0d0d12;
+  border-right: 2px solid #00ff44; box-shadow: 6px 0 40px rgba(0,255,68,0.2);
+  transition: left 0.4s cubic-bezier(0.4,0,0.2,1); z-index: 99998;
+  overflow-y: auto; padding-bottom: 30px;
+}
+#sideMenu.open { left: 0; }
+.menu-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 20px; border-bottom: 1px solid #1a2a1a; margin-bottom: 10px;
+}
+.menu-title { font-family: 'Bebas Neue', cursive; color: #00ff44; font-size: 20px; letter-spacing: 2px; }
+#closeBtn { background: none; border: none; color: #ff4444; font-size: 22px; cursor: pointer; transition: transform 0.3s; }
+#closeBtn:hover { transform: rotate(90deg); }
+.cat-item {
+  display: flex; align-items: center; gap: 16px;
+  padding: 18px 22px; cursor: pointer; transition: all 0.25s;
+  border-left: 3px solid transparent; margin: 2px 0;
+}
+.cat-item:hover { background: rgba(0,255,68,0.07); border-left-color: #00ff44; }
+.cat-icon { font-size: 28px; width: 36px; text-align: center; flex-shrink: 0; }
+.cat-name { font-family: 'Bebas Neue', cursive; font-size: 18px; letter-spacing: 2px; color: #ddd; display: block; }
+.cat-item:hover .cat-name { color: #00ff44; }
+.menu-divider { border: none; border-top: 1px solid #1a2a1a; margin: 6px 0; }
+#nav-overlay {
+  display: none; position: fixed; top: 70px; left: 0;
+  width: 100%; height: 100%; background: rgba(0,0,0,0.55); z-index: 9998;
+}
+#nav-overlay.show { display: block; }
+body { padding-top: 70px !important; }
+
+</style>
+<nav id="sportify-nav">
+  <div class="nav-left">
+    <button id="ham" onclick="navToggleMenu()">☰</button>
+    <div class="logo" onclick="navGoTo('sportshome.html')">SPORT<span>IFY</span></div>
+  </div>
+  <ul class="nav-links">
+    <li onclick="navGoTo('sportshome.html')">🏠 Home</li>
+    <li onclick="navGoTo('about.html')">About Us</li>
+    <li onclick="navGoTo('contact.html')">Contact</li>
+    <li><button id="loginBtn" onclick="navGoTo('login.html')">Login</button></li>
+    <li><button id="profileBtn" onclick="navGoTo('profile.html')">👤</button></li>
+  </ul>
+</nav>
+<div id="nav-overlay" onclick="navCloseMenu()"></div>
+<div id="sideMenu">
+  <div class="menu-header">
+    <span class="menu-title">🏆 SPORTS</span>
+    <button id="closeBtn" onclick="navCloseMenu()">✕</button>
+  </div>
+  <div class="cat-item" onclick="navGoTo('indoor.html')"><span class="cat-icon">🏓</span><span class="cat-name">INDOOR SPORTS</span></div>
+  <hr class="menu-divider">
+  <div class="cat-item" onclick="navGoTo('outdoor.html')"><span class="cat-icon">⚽</span><span class="cat-name">OUTDOOR SPORTS</span></div>
+  <hr class="menu-divider">
+  <div class="cat-item" onclick="navGoTo('board.html')"><span class="cat-icon">♟</span><span class="cat-name">BOARD GAMES</span></div>
+  <hr class="menu-divider">
+  <div class="cat-item" onclick="navGoTo('athletics.html')"><span class="cat-icon">🏃</span><span class="cat-name">ATHLETICS</span></div>
+  <hr class="menu-divider">
+  <div class="cat-item" onclick="navGoTo('esports.html')"><span class="cat-icon">🎮</span><span class="cat-name">E-SPORTS</span></div>
+</div>
+<script>
+function navToggleMenu(){document.getElementById('sideMenu').classList.toggle('open');document.getElementById('nav-overlay').classList.toggle('show');}
+function navCloseMenu(){document.getElementById('sideMenu').classList.remove('open');document.getElementById('nav-overlay').classList.remove('show');}
+function navGoTo(page){navCloseMenu();window.location.href=page;}
+function navGoBack(){window.history.back();}
+</script>
+<!-- SPORTIFY NAV END -->
+
+
+
+
+<div class="ticker">
+  <span class="ticker-inner">
+    🏆 NEW TOURNAMENTS OPEN FOR REGISTRATION &nbsp;·&nbsp; ⚽ FOOTBALL LEAGUE STARTS JUNE 2025 &nbsp;·&nbsp; 🏀 BASKETBALL CUP - REGISTER NOW &nbsp;·&nbsp; 🎾 TENNIS DOUBLES OPEN &nbsp;·&nbsp; 🏏 CRICKET T20 CHAMPIONSHIP &nbsp;·&nbsp; 🏊 SWIMMING NATIONALS - ENTRIES CLOSE SOON &nbsp;·&nbsp;
+  </span>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <script>if(!localStorage.getItem('sportifyUser')){window.location.href='login.html';}else{var _u=JSON.parse(localStorage.getItem('sportifyUser'));}</script>
+<div class="bg-grid"></div>
+  <div class="hero-content" style="margin-top: 60px;">
+    <div class="hero-stickers">
+      <span class="sticker">⚽</span>
+      <span class="sticker">🏀</span>
+      <span class="sticker">🏏</span>
+      <span class="sticker">🎾</span>
+      <span class="sticker">🏊</span>
+      <span class="sticker">🥊</span>
+      <span class="sticker">🏋️</span>
+      <span class="sticker">🚴</span>
+    </div>
+    <div class="hero-tagline">Welcome to Sportify Platform</div>
+    <h1 class="hero-title">
+      PLAY WITH <span class="green">HEART,</span><br>
+      WIN WITH <span class="green">PRIDE.</span>
+    </h1>
+    <p class="hero-sub">Discover tournaments, track your sports journey, and compete with champions across India.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="window.location.href='signup.html'">🏅 Register Now</button>
+      <button class="btn-secondary" onclick="window.location.href='about.html'">Learn More →</button>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDER -->
+<section class="slider-section">
+  <div class="section-label">Featured Events</div>
+  <div class="section-title">UPCOMING TOURNAMENTS</div>
+  <div class="slider-wrap">
+    <div class="slides-container" id="slidesContainer">
+      <div class="slide-item">
+        <div class="slide-bg"><span>🏏</span></div>
+        <div class="slide-caption">
+          <h3>T20 Cricket Championship 2025</h3>
+          <p>Inter-state cricket tournament · June 15–30, 2025 · Chennai, Tamil Nadu</p>
+        </div>
+      </div>
+      <div class="slide-item">
+        <div class="slide-bg"><span>⚽</span></div>
+        <div class="slide-caption">
+          <h3>Football Premier League</h3>
+          <p>Open category football tournament · July 5–20, 2025 · Bangalore</p>
+        </div>
+      </div>
+      <div class="slide-item">
+        <div class="slide-bg"><span>🏀</span></div>
+        <div class="slide-caption">
+          <h3>National Basketball Cup</h3>
+          <p>Youth & senior categories · August 1–15, 2025 · Delhi</p>
+        </div>
+      </div>
+      <div class="slide-item">
+        <div class="slide-bg"><span>🎾</span></div>
+        <div class="slide-caption">
+          <h3>All India Tennis Open</h3>
+          <p>Singles & doubles categories · September 10–20, 2025 · Mumbai</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slider-arrows">
+    <button class="arrow-btn" onclick="changeSlide(-1)">❮</button>
+    <button class="arrow-btn" onclick="changeSlide(1)">❯</button>
+  </div>
+  <div class="slide-nav" id="slideNav"></div>
+</section>
+
+<!-- SPORTS GRID -->
+<section class="sports-grid-section">
+  <div class="section-label">Explore Sports</div>
+  <div class="section-title">FIND YOUR SPORT</div>
+  <div class="sports-grid">
+    <div class="sport-card"><span class="s-icon">⚽</span><span class="s-name">Football</span></div>
+    <div class="sport-card"><span class="s-icon">🏀</span><span class="s-name">Basketball</span></div>
+    <div class="sport-card"><span class="s-icon">🏏</span><span class="s-name">Cricket</span></div>
+    <div class="sport-card"><span class="s-icon">🎾</span><span class="s-name">Tennis</span></div>
+    <div class="sport-card"><span class="s-icon">🏊</span><span class="s-name">Swimming</span></div>
+    <div class="sport-card"><span class="s-icon">🥊</span><span class="s-name">Boxing</span></div>
+    <div class="sport-card"><span class="s-icon">🏋️</span><span class="s-name">Weightlifting</span></div>
+    <div class="sport-card"><span class="s-icon">🚴</span><span class="s-name">Cycling</span></div>
+    <div class="sport-card"><span class="s-icon">🤸</span><span class="s-name">Gymnastics</span></div>
+    <div class="sport-card"><span class="s-icon">🏓</span><span class="s-name">Table Tennis</span></div>
+    <div class="sport-card"><span class="s-icon">🏸</span><span class="s-name">Badminton</span></div>
+    <div class="sport-card"><span class="s-icon">🏐</span><span class="s-name">Volleyball</span></div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section">
+  <div class="stat-card">
+    <div class="stat-num">500+</div>
+    <div class="stat-label">Tournaments Hosted</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">12K+</div>
+    <div class="stat-label">Registered Athletes</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">28</div>
+    <div class="stat-label">Sports Covered</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">15+</div>
+    <div class="stat-label">States Covered</div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-stickers">🏅 🎖️ 🏆 🥇 🎯</div>
+  <h2 class="cta-title">READY TO JOIN THE <span class="green">ARENA?</span></h2>
+  <p class="cta-sub">Register today and start your sports journey with thousands of champions.</p>
+  <button class="btn-primary" onclick="window.location.href='signup.html'" style="font-size:20px;padding:18px 50px;">
+    🚀 REGISTER NOW — IT'S FREE
+  </button>
+</section>
+
+<script>
+let slideIndex = 0;
+const total = 4;
+const container = document.getElementById('slidesContainer');
+const navDiv = document.getElementById('slideNav');
+
+// Build dots
+for (let i = 0; i < total; i++) {
+  const d = document.createElement('div');
+  d.className = 'slide-dot' + (i === 0 ? ' active' : '');
+  d.onclick = () => goToSlide(i);
+  navDiv.appendChild(d);
+}
+
+function goToSlide(n) {
+  slideIndex = (n + total) % total;
+  container.style.transform = `translateX(-${slideIndex * 100}%)`;
+  document.querySelectorAll('.slide-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === slideIndex);
+  });
+}
+function changeSlide(n) { goToSlide(slideIndex + n); }
+setInterval(() => changeSlide(1), 3500);
+</script>
+</body>
+</html>
